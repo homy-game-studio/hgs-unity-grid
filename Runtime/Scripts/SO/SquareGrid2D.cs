@@ -9,16 +9,29 @@ namespace HGS.Grid
   public class SquareGrid2D : GridBase
   {
     [Header("Grid")]
-    public Vector3Int size = Vector3Int.zero;
+    public Vector2Int size = new Vector2Int(10, 10);
 
     [Header("Ceil")]
     public Vector2 ceilSpacement = Vector2.zero;
+
     public List<Vector3Int> ceilNeighborsOffset = new List<Vector3Int>
     {
       Vector3Int.left,
       Vector3Int.right,
       Vector3Int.up,
       Vector3Int.down,
+      Vector3Int.up + Vector3Int.left,
+      Vector3Int.up + Vector3Int.right,
+      Vector3Int.down + Vector3Int.left,
+      Vector3Int.down + Vector3Int.right,
+    };
+
+    public override List<Vector3> CeilVertex => new List<Vector3>
+    {
+        (Vector3.up+ Vector3.left)/2f,
+        (Vector3.up+ Vector3.right)/2f,
+        (Vector3.down+ Vector3.right)/2f,
+        (Vector3.down+ Vector3.left)/2f,
     };
 
     public override Vector3 CoordToWorldPos(Vector3Int coord)

@@ -7,7 +7,7 @@ namespace HGS.Grid
   public abstract class GridBase : ScriptableObject
   {
     [Header("Base config")]
-    public int ceilSize = 1;
+    public float ceilSize = 1;
     public Vector3 worldPosition = Vector3.zero;
 
     public abstract Vector3 CoordToWorldPos(Vector3Int coord);
@@ -15,5 +15,7 @@ namespace HGS.Grid
 
     public abstract List<Vector3Int> GetCoordNeighbors(Vector3Int coord);
     public abstract void ForEach(Action<Vector3Int> callback);
+
+    public abstract List<Vector3> CeilVertex { get; }
   }
 }
