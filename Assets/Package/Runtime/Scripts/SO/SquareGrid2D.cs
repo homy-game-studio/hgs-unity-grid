@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace HGS.Grid
+{
+  [CreateAssetMenu(fileName = "SquareGrid2D", menuName = "HGS/Grid/SquareGrid2D")]
+  public class SquareGrid2D : GridBase
+  {
+    [Header("Grid")]
+    public Vector3Int size = Vector3Int.zero;
+
+    [Header("Ceil")]
+    public Vector2 ceilSpacement = Vector2.zero;
+    public List<Vector3Int> ceilNeighborsOffset = new List<Vector3Int>
+    {
+      Vector3Int.left,
+      Vector3Int.right,
+      Vector3Int.up,
+      Vector3Int.down,
+    };
+
+    public override Vector3 CoordToWorldPos(Vector3Int coord)
+    {
+      return new Vector3
+      {
+        x = (coord.x * ceilSize) + (coord.x * ceilSpacement.x) + worldPosition.x,
+        y = (coord.y * ceilSize) + (coord.y * ceilSpacement.y) + worldPosition.y,
+        z = worldPosition.z,
+      };
+    }
+
+    public override Vector3Int WorldPosToCoord(Vector3 pos)
+    {
+      var worldPos = new Vector3
+      {
+        x = (-worldPosition.x + pos.x) / (ceilSize + ceilSpacement.x),
+        y = (-worldPosition.y + pos.y) / (ceilSize + ceilSpacement.y),
+        z = 0,
+      };
+
+      return new Vector3Int
+      {
+        x = Mathf.RoundToInt(worldPos.x),
+        y = Mathf.RoundToInt(worldPos.y),
+        z = 0,
+      };
+    }
+
+    public override List<Vector3Int> GetCoordNeighbors(Vector3Int coord)
+    {
+      return ceilNeighborsOffset
+        .Select(offset => coord + offset)
+        .ToList();
+    }
+
+    public override void ForEach(Action<Vector3Int> callback)
+    {
+      for (int x = 0; x < size.x; x++)
+      {
+        for (int y = 0; y < size.y; y++)
+        {
+          callback.Invoke(new Vector3Int(x, y, 0));
+        }
+      }
+    }
+  }
+}
