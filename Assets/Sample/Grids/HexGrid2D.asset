@@ -9,19 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddd58e5ef0ed7f24b8de04c5a4f9b7a0, type: 3}
-  m_Name: SquareGrid2D
+  m_Script: {fileID: 11500000, guid: b677911fedb692449902b736c2150458, type: 3}
+  m_Name: HexGrid2D
   m_EditorClassIdentifier: 
   ceilSize: 1
-  worldPosition: {x: 0, y: 0, z: 0}
-  size: {x: 10, y: 10}
+  worldPosition: {x: 13.33, y: 0, z: 0}
+  size: {x: 5, y: 5}
+  mode: 1
   ceilSpacement: {x: 0, y: 0}
   ceilNeighborsOffset:
   - {x: -1, y: 0, z: 0}
   - {x: 1, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: -1, z: 0}
-  - {x: -1, y: 1, z: 0}
-  - {x: 1, y: 1, z: 0}
-  - {x: -1, y: -1, z: 0}
-  - {x: 1, y: -1, z: 0}
