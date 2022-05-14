@@ -1,0 +1,18 @@
+{
+  "name": "com.hgs.grid",
+  "version": "1.0.0",
+  "displayName": "Grid",
+  "description": "Sistema de grid 2d/3d",
+  "unity": "2020.3",
+  "keywords": [
+    "Grid",
+    "2D",
+    "3D",
+    "Coord"
+  ],
+  "author": {
+    "name": "Homy Game Studio",
+    "email": "contato@homygamestudio.com"
+  },
+  "dependencies": {}
+}
