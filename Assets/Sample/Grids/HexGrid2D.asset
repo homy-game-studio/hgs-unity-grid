@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b677911fedb692449902b736c2150458, type: 3}
   m_Name: HexGrid2D
   m_EditorClassIdentifier: 
-  ceilSize: 1
+  ceilSize: 0.5
   worldPosition: {x: 13.33, y: 0, z: 0}
-  size: {x: 5, y: 5}
+  size: {x: 6, y: 30}
   mode: 1
   ceilSpacement: {x: 0, y: 0}
   ceilNeighborsOffset:
