@@ -21,14 +21,6 @@ namespace HGS.Grid
     [Header("Ceil")]
     public Vector2 ceilSpacement = Vector2.one;
 
-    public List<Vector3Int> ceilNeighborsOffset = new List<Vector3Int>
-    {
-      Vector3Int.left,
-      Vector3Int.right,
-      Vector3Int.up,
-      Vector3Int.down,
-    };
-
     public override List<Vector3> CeilVertex => mode == Mode.FLAT
         ? HexUtility.FlatCorners
         : HexUtility.PointyCorners;
@@ -44,29 +36,17 @@ namespace HGS.Grid
 
     public override void ForEach(Action<Vector3Int> callback)
     {
-      /* for (int q = -size.x; q <= size.x; q++)
-        {
-          int r1 = Math.Max(-size.x, -q - size.x);
-          int r2 = Math.Min(size.y, -q + size.y);
-
-          for (int r = r1; r <= r2; r++)
-          {
-            var coord = new Vector3Int(q, r, -q - r);
-            callback.Invoke(coord);
-          }
-        }*/
-      for (int x = 0; x < size.x; x++)
+      for (int q = -size.x; q <= size.x; q++)
       {
-        for (int y = 0; y < size.y; y++)
+        int r1 = Math.Max(-size.x, -q - size.x);
+        int r2 = Math.Min(size.y, -q + size.y);
+
+        for (int r = r1; r <= r2; r++)
         {
-          callback.Invoke(new Vector3Int(x, y, 0));
+          var coord = new Vector3Int(q, r, -q - r);
+          callback.Invoke(coord);
         }
       }
-    }
-
-    public override List<Vector3Int> GetCoordNeighbors(Vector3Int coord)
-    {
-      throw new NotImplementedException();
     }
 
     public override Vector3Int WorldPosToCoord(Vector3 pos)

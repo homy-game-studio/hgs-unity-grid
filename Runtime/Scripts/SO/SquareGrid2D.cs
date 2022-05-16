@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace HGS.Grid
@@ -13,18 +12,6 @@ namespace HGS.Grid
 
     [Header("Ceil")]
     public Vector2 ceilSpacement = Vector2.zero;
-
-    public List<Vector3Int> ceilNeighborsOffset = new List<Vector3Int>
-    {
-      Vector3Int.left,
-      Vector3Int.right,
-      Vector3Int.up,
-      Vector3Int.down,
-      Vector3Int.up + Vector3Int.left,
-      Vector3Int.up + Vector3Int.right,
-      Vector3Int.down + Vector3Int.left,
-      Vector3Int.down + Vector3Int.right,
-    };
 
     public override List<Vector3> CeilVertex => new List<Vector3>
     {
@@ -59,13 +46,6 @@ namespace HGS.Grid
         y = Mathf.RoundToInt(worldPos.y),
         z = 0,
       };
-    }
-
-    public override List<Vector3Int> GetCoordNeighbors(Vector3Int coord)
-    {
-      return ceilNeighborsOffset
-        .Select(offset => coord + offset)
-        .ToList();
     }
 
     public override void ForEach(Action<Vector3Int> callback)

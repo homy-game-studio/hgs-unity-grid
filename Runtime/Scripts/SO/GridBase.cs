@@ -12,8 +12,6 @@ namespace HGS.Grid
 
     public abstract Vector3 CoordToWorldPos(Vector3Int coord);
     public abstract Vector3Int WorldPosToCoord(Vector3 pos);
-
-    public abstract List<Vector3Int> GetCoordNeighbors(Vector3Int coord);
     public abstract void ForEach(Action<Vector3Int> callback);
 
     public abstract List<Vector3> CeilVertex { get; }
