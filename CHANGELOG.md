@@ -1,3 +1,12 @@
+# 1.0.0 (2022-05-16)
+
+
+### Features
+
+* implementa HexGrid2D ([7fb5d1a](https://github.com/homy-game-studio/hgs-unity-grid/commit/7fb5d1a8889aba5c4c771e9571aa0c586e1a3ebf))
+* implementa SquareGrid2D ([7d8590e](https://github.com/homy-game-studio/hgs-unity-grid/commit/7d8590ea0d2638a6b13367053f630bacefe3fd1d))
+* implementa SquareGrid2D ([3558f36](https://github.com/homy-game-studio/hgs-unity-grid/commit/3558f36ff84af525fca37c86e28f1bf3a15e18bc))
+
 ## [1.2.1](https://github.com/homy-game-studio/hgs-upm-template/compare/v1.2.0...v1.2.1) (2021-06-17)
 
 
