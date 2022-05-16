@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ceilSize: 1
   worldPosition: {x: 0, y: 0, z: 0}
-  size: {x: 10, y: 10}
+  size: {x: 5, y: 5}
   ceilSpacement: {x: 0, y: 0}
   ceilNeighborsOffset:
   - {x: -1, y: 0, z: 0}
