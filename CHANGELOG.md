@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v1.0.0...v1.1.0) (2022-05-21)
+
+
+### Features
+
+* adiciona map storage ([802b606](https://github.com/homy-game-studio/hgs-unity-grid/commit/802b606d69ba275eb683bd44c23be07643da579e))
+
+
+### Performance Improvements
+
+* cria classes auxiliares para  calculo de hexagonos ([5e9e252](https://github.com/homy-game-studio/hgs-unity-grid/commit/5e9e2529fdbab7575e0337105b631aa34f4a7063))
+
 # 1.0.0 (2022-05-16)
 
 
