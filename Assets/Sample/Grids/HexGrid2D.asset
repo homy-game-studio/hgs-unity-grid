@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b677911fedb692449902b736c2150458, type: 3}
   m_Name: HexGrid2D
   m_EditorClassIdentifier: 
-  ceilSize: 0.5
-  worldPosition: {x: 13.33, y: 0, z: 0}
-  size: {x: 6, y: 30}
-  mode: 1
-  ceilSpacement: {x: 0, y: 0}
-  ceilNeighborsOffset:
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: -1, z: 0}
+  ceilSize: {x: 1, y: 1}
+  worldPosition: {x: 22.02, y: 0, z: 0}
+  size: {x: 2, y: 2}
+  orientationType: 1
