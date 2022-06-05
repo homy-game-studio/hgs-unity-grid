@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v1.1.0...v2.0.0) (2022-06-05)
+
+
+### Code Refactoring
+
+* unifica grids num único script MultiGrid ([89492e7](https://github.com/homy-game-studio/hgs-unity-grid/commit/89492e7c6adb928e1abe8d3fbfea42476b4de99d))
+
+
+### Features
+
+* adiciona grid no editor ([ced95b3](https://github.com/homy-game-studio/hgs-unity-grid/commit/ced95b303baf0176db796d1932a10043bcaacb51))
+
+
+### BREAKING CHANGES
+
+* implementa nova estrutura de grid
+
 # [1.1.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v1.0.0...v1.1.0) (2022-05-21)
 
 
