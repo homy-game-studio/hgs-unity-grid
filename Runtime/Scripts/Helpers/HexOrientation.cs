@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace HGS.Grid.Hex
+namespace HGS.GridSystem.Helpers
 {
-  public class Orientation
+  public class HexOrientation
   {
     public float F0 { get; private set; }
     public float F1 { get; private set; }
@@ -16,7 +16,7 @@ namespace HGS.Grid.Hex
 
     public float StartAngle { get; private set; }
 
-    public static Orientation Flat = new Orientation
+    public static HexOrientation Flat = new HexOrientation
     {
       F0 = 3f / 2f,
       F1 = 0f,
@@ -31,7 +31,7 @@ namespace HGS.Grid.Hex
       StartAngle = 0f
     };
 
-    public static Orientation Pointy = new Orientation
+    public static HexOrientation Pointy = new HexOrientation
     {
       F0 = Mathf.Sqrt(3f),
       F1 = Mathf.Sqrt(3f) / 2f,
