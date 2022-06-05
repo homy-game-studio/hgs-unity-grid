@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using HGS.GridSystem;
 using UnityEngine;
-using HGS.Grid;
 
 public class CoordDetector : MonoBehaviour
 {
-  [SerializeField] GridBase grid = null;
+  [SerializeField] MultiGrid grid = null;
   [SerializeField] TextMesh textMesh = null;
 
   Vector3Int coord = Vector3Int.zero;
@@ -13,7 +11,7 @@ public class CoordDetector : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    coord = grid.WorldPosToCoord(transform.position);
+    coord = grid.WorldToCell(transform.position);
     textMesh.text = coord.ToString();
   }
 }
