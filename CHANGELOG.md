@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v2.0.0...v2.1.0) (2022-08-10)
+
+
+### Features
+
+* **Cell:** Add GetLines ([c32c63c](https://github.com/homy-game-studio/hgs-unity-grid/commit/c32c63c21b5fc42fa9b7b878fca078e9d5f3782c))
+* **Utility:** Add ShapeUtility ([fe4929e](https://github.com/homy-game-studio/hgs-unity-grid/commit/fe4929e43af8efbdede3074180823884c07d5b57))
+
+
+### Performance Improvements
+
+* **MultiGrid:** Reduce cpu usage in Editor ([3d39885](https://github.com/homy-game-studio/hgs-unity-grid/commit/3d3988596eb7c1367727fb69aecaeb31fee2e8a3))
+
 # [2.0.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v1.1.0...v2.0.0) (2022-06-05)
 
 
