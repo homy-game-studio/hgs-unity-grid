@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/homy-game-studio/hgs-unity-grid/compare/v2.1.0...v2.1.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* **Package:** Change package display name ([3c7656d](https://github.com/homy-game-studio/hgs-unity-grid/commit/3c7656d8160379185da1cab8e9afb8981ddcc967))
+
 # [2.1.0](https://github.com/homy-game-studio/hgs-unity-grid/compare/v2.0.0...v2.1.0) (2022-08-10)
 
 
