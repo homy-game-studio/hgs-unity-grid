@@ -25,29 +25,10 @@ namespace HGS.GridSystem
       {CellLayout.HexagonFlat, new HexagonLayout(HexOrientation.Flat)},
     };
 
-    public ICellLayout Layout
-    {
-      get => _layouts[cellLayout];
-    }
-
-    public Vector3[] GetCorners()
-    {
-      return Layout.GetCorners(cellSize);
-    }
-
-    public Vector3 GetCorner(int corner)
-    {
-      return Layout.GetCorner(corner, cellSize);
-    }
-
-    public Vector3 CellToWorld(Vector3Int cell)
-    {
-      return transform.position + Layout.CellToLocal(cell, cellSize);
-    }
-
-    public Vector3Int WorldToCell(Vector3 world)
-    {
-      return Layout.LocalToCell(world - transform.position, cellSize);
-    }
+    public ICellLayout Layout => _layouts[cellLayout];
+    public Vector3[] GetCorners() => Layout.GetCorners(cellSize);
+    public Vector3 GetCorner(int corner) => Layout.GetCorner(corner, cellSize);
+    public Vector3 CellToWorld(Vector3Int cell) => transform.position + Layout.CellToLocal(cell, cellSize);
+    public Vector3Int WorldToCell(Vector3 world) => Layout.LocalToCell(world - transform.position, cellSize);
   }
 }
