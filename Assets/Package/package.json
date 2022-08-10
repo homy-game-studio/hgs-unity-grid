@@ -1,7 +1,7 @@
 {
   "name": "com.hgs.grid",
   "version": "2.1.0",
-  "displayName": "Grid",
+  "displayName": "HGS Grid",
   "description": "Sistema de grid 2d/3d",
   "unity": "2020.3",
   "keywords": [
