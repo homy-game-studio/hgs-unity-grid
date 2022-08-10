@@ -1,38 +1,173 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![openupm](https://img.shields.io/npm/v/com.hgs.grid?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.hgs.grid/)
 
-## Convenção de Package Name
-A documetnação do Unity recomenda uma convensão especifica para nomes de packages.:
+# Introduction
 
-> Comece com `com.<company-name>`. Por exemplo, um dos pacotes oficiais do Unity é `com.unity.timeline`. 
+**HGS Grid** has implements hexagonal and squared matrix based on [www.redblobgames.com/grids/hexagons](https://www.redblobgames.com/grids/hexagons/).
 
-Para mais detalhes acesse a [documentação](https://docs.unity3d.com/2020.1/Documentation/Manual/cus-naming.html).
+## Coord System
 
-Com isso em mente, todos os pacotes da homy para UPM devem seguir o padrão. `com.hgs.my-package-name`. Por exemplo, este template é `com.hgs.upm-template`.
+For convenience this package uses [Cube Coordinates](https://www.redblobgames.com/grids/hexagons). You can define coordinates using `Vector3Int`.
 
-Este nome deve ser especificado em `name` no **package.json**.
+For sample:
 
-**ATENÇÃO** O nome do package junto e nome do repositório não podem ser alterados! Caso isso aconteça outros packages ou projetos perderão a referencia.
+```cs
+var center = new Vector3Int(0,0,0);
+var left = new Vector3Int(-1,0,1);
+var right = new Vector3Int(1,0,-1);
+```
 
-Além do campo `name` existe outro campo chamado `displayName` este pode ser alterado sempre que necessário, este nome aparecerá na janela do Unity Package Manager.
+## MultiGrid
 
-## Convenção de namespace
-Para isolar os assets de outros scripts isolamos todos no namespace do package `HGS.<package-name>`. Por exemplo, neste package de template usamos `HGS.Template`.
+This component is used to manage a coord system, you can easily convert `Cube Coordinate` to `Unity World Position` and vice versa.
 
-## Convenção de Assembly
-Cada pasta na raiz do package precisa de um AssemblyDefinition, por tanto utilizamos a convenção `HGS.<pacakge-name>.<folder-name>`. Por exemplo, neste projeto possuirmos a pasta Runtime, onde o Assembly é `HGS.Template.Runtime`.
+### Attributes
+
+| Attribute    | Type      | Description                             |
+| ------------ | --------- | --------------------------------------- |
+| `cellSize`   | `Vector3` | Size of cell inside grid                |
+| `cellLayout` | `Enum`    | Change grid layout to hexagonor squared |
+
+### Methods
+
+| Attribute                      | Type         | Description                                         |
+| ------------------------------ | ------------ | --------------------------------------------------- |
+| `GetLines()`                   | `Vector3[]`  | Get all sides of cell inscribed inside circle.      |
+| `GetCorners()`                 | `Vector3[]`  | Get all corner of cell inscribed inside circle      |
+| `GetCorner(int corner)`        | `Vector3`    | Get specific corner of cell inscribed inside circle |
+| `CellToWorld(Vector3Int cell)` | `Vector3`    | Converts a Cube Coordinate to Unity World Position  |
+| `WorldToCell(Vector3 world)`   | `Vector3Int` | Converts a Unity World Position to Cube Coordinate  |
+
+### Cell Layouts
+
+![](images/cell-layout.png)
+
+### Coordinate to World Space
+
+To convert a coordinate to Unity World Space, you can:
+
+```cs
+public class CoordSetter: MonoBehaviour
+{
+  [SerializeField] MultiGrid grid;
+
+  void Start(){
+    var coord = new Vector3Int(0,0,0);
+    var worldPos = grid.CellToWorld(coord);
+    transform.position  = worldPos;
+  }
+}
+```
+
+### World Space to Coord
+
+To extract a coordinate from Unity World Space, you can:
+
+```cs
+public class CoordGetter: MonoBehaviour
+{
+  [SerializeField] MultiGrid grid;
+
+  void Start(){
+    var coord = grid.WorldToCell(transform.position);
+    Debug.Log("Coord: "+coord);
+  }
+}
+```
+
+## ShapeUtility
+
+With `ShapeUtility`, you can iterate shapes without complexity.:
+
+### Draw Square
+
+```cs
+ShapeUtility.Square(
+  left: -5,
+  right: 5,
+  top: -5,
+  bottom: 5,
+  // DrawCell doesn't exists, it's just a pseudocode
+  callback: (coord) => Gizmos.DrawCell(coord);
+);
+```
+
+Result on screen:
+
+![](images/square.png)
+
+### Draw Square Hex Flat
+
+```cs
+ShapeUtility.SquareHexFlat(
+  left: -5,
+  right: 5,
+  top: -5,
+  bottom: 5,
+  // DrawCell doesn't exists, it's just a pseudocode
+  callback: (coord) => Gizmos.DrawCell(coord);
+);
+```
+
+Result on screen:
+
+![](images/square-hex-flat.png)
+
+### Draw Square Hex Pointy
+
+```cs
+ShapeUtility.SquareHexPointy(
+  left: -5,
+  right: 5,
+  top: -5,
+  bottom: 5,
+  // DrawCell doesn't exists, it's just a pseudocode
+  callback: (coord) => Gizmos.DrawCell(coord);
+);
+```
+
+Result on screen:
+
+![](images/square-hex-pointy.png)
+
+## Map
+
+## Installation
+
+OpenUPM:
+
+`openupm add com.hgs.grid`
+
+Package Manager:
+
+`https://github.com/homy-game-studio/hgs-unity-grid.git#upm`
+
+Or specify version:
+
+`https://github.com/homy-game-studio/hgs-unity-grid.git#1.0.0`
+
+# Samples
+
+You can see all samples directly in **Package Manager** window.
+
+# Contrib
+
+If you found any bugs, have any suggestions or questions, please create an issue on github. If you want to contribute code, fork the project and follow the best practices below, and make a pull request.
+
+## Namespace Convention
+
+To avoid script collisions, all scripts of this package is covered by `HGS.GridSystem` namespace.
 
 ## Branchs
-Todos os packages devem possuir duas branchs reservadas.:
 
-- `master` -> Aqui guardamos todo material do projeto.
-- `upm` -> Aqui mantemos uma copia do package que se encontra na pasta `Assets/Package`.
+- `master` -> Keeps the unity project to development purposes.
+- `upm` -> Copy of folder content `Assets/Package` to release after pull request in `master`.
 
-Sempre que um merge é feito na branch `unity`, o script de CI  irá criar uma copia da subpasta `Assets/Package` automaticamente na branch `upm`. Portanto é importante que exista uma pasta chamada `Package` dentro de `Assets` para o deploy ocorra com sucesso. 
+Whenever a change is detected on the `master` branch, CI gets the contents of `Assets/Package`, and pushes in `upm` branch.
 
-## Alterando versões de um package
-Utilizamos o plugin [semantic-release](https://github.com/semantic-release/semantic-release) para facilitar o sistema de release e versionamento, portanto, sempre inicie um repositorio na versão 0.0.0, pois este será alterado automaticamente conforme o uso.
+## Commit Convention
 
-Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commits.:
+This package uses [semantic-release](https://github.com/semantic-release/semantic-release) to facilitate the release and versioning system. Please use angular commit convention:
 
 ```
 <type>(<scope>): <short summary>
@@ -44,7 +179,7 @@ Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commit
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
 
-`Type`.: 
+`Type`.:
 
 - build: Changes that affect the build system or external dependencies (example scopes: package system)
 - ci: Changes to our CI configuration files and scripts (example scopes: Circle, - BrowserStack, SauceLabs)
@@ -54,7 +189,3 @@ Para utilizar o semantic-relase, temos utilizar a seguinte convenção se commit
 - perf: A code change that improves performance
 - refactor: A code change that neither fixes a bug nor adds a feature
 - test: Adding missing tests or correcting existing tests
-
-### Observação
-
-Certifique-se de exlcuir todos os meta files caso você copie os arquivos deste repositório e cole em outro lugar, isso evita conflito de meta no unity.
