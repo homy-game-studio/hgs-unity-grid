@@ -15,6 +15,16 @@ namespace HGS.GridSystem.Layouts
       };
     }
 
+    public Vector3[] GetLines(Vector2 cellSize)
+    {
+      return new Vector3[8]{
+        GetCorner(0,cellSize), GetCorner(1,cellSize),
+        GetCorner(1,cellSize), GetCorner(2,cellSize),
+        GetCorner(2,cellSize), GetCorner(3,cellSize),
+        GetCorner(3,cellSize), GetCorner(0,cellSize),
+      };
+    }
+
     public Vector3 GetCorner(int corner, Vector2 cellSize)
     {
       var angle = 2f * Mathf.PI * (0.5f - corner) / 4f;

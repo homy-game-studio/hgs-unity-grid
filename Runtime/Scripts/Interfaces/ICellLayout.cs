@@ -9,5 +9,6 @@ namespace HGS.GridSystem.Interfaces
     Vector3Int LocalToCell(Vector3 pos, Vector2 cellSize);
     Vector3 GetCorner(int corner, Vector2 cellSize);
     Vector3[] GetCorners(Vector2 cellSize);
+    Vector3[] GetLines(Vector2 cellSize);
   }
 }
