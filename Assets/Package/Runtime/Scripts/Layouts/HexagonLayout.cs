@@ -63,5 +63,17 @@ namespace HGS.GridSystem.Layouts
         GetCorner(5,cellSize),
       };
     }
+
+    public Vector3[] GetLines(Vector2 cellSize)
+    {
+      return new Vector3[12]{
+        GetCorner(0,cellSize),GetCorner(1,cellSize),
+        GetCorner(1,cellSize),GetCorner(2,cellSize),
+        GetCorner(2,cellSize),GetCorner(3,cellSize),
+        GetCorner(3,cellSize),GetCorner(4,cellSize),
+        GetCorner(4,cellSize),GetCorner(5,cellSize),
+        GetCorner(5,cellSize),GetCorner(0,cellSize),
+      };
+    }
   }
 }
