@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
+using HGS.GridSystem.Utility;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,8 +9,30 @@ namespace HGS.GridSystem.EditorExtensions
   public class MultiGridEditor : Editor
   {
     MultiGrid _grid = null;
+    Vector3[] _segments = new Vector3[] { };
 
-    Vector3[] _segments = null;
+    void AddSegment(Vector3Int coord)
+    {
+      var position = _grid.CellToWorld(coord);
+      var corners = _grid
+           .GetLines()
+           .Select(corner => corner + position)
+           .ToArray();
+
+      ArrayUtility.AddRange(ref _segments, corners);
+    }
+
+    void UpdateSegments()
+    {
+      ArrayUtility.Clear(ref _segments);
+
+      switch (_grid.Layout)
+      {
+        case MultiGrid.CellLayout.Rectangle: ShapeUtility.Square(-5, 5, -5, 5, AddSegment); break;
+        case MultiGrid.CellLayout.HexagonFlat: ShapeUtility.SquareHexPointy(-5, 5, -5, 5, AddSegment); break;
+        case MultiGrid.CellLayout.HexagonPointy: ShapeUtility.SquareHexFlat(-5, 5, -5, 5, AddSegment); break;
+      }
+    }
 
     void OnEnable()
     {
@@ -18,32 +40,13 @@ namespace HGS.GridSystem.EditorExtensions
       UpdateSegments();
     }
 
-    void UpdateSegments()
-    {
-      var segments = new List<Vector3>();
-
-      for (var x = -50; x < 50; x++)
-      {
-        for (var y = -50; y < 50; y++)
-        {
-          var coord = new Vector3Int(x, y, 0);
-          var position = _grid.CellToWorld(coord);
-          var corners = _grid
-            .GetCorners()
-            .Select(corner => corner + position);
-
-          segments.AddRange(corners);
-        }
-      }
-      _segments = segments.ToArray();
-    }
-
     void OnSceneGUI()
     {
-      if (Event.current.type != EventType.Repaint)
-        return;
-
-      Handles.DrawLines(_segments);
+      if (Event.current.type == EventType.Repaint)
+      {
+        UpdateSegments();
+        Handles.DrawLines(_segments);
+      }
     }
   }
 }

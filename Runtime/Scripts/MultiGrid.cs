@@ -25,10 +25,12 @@ namespace HGS.GridSystem
       {CellLayout.HexagonFlat, new HexagonLayout(HexOrientation.Flat)},
     };
 
-    public ICellLayout Layout => _layouts[cellLayout];
-    public Vector3[] GetCorners() => Layout.GetCorners(cellSize);
-    public Vector3 GetCorner(int corner) => Layout.GetCorner(corner, cellSize);
-    public Vector3 CellToWorld(Vector3Int cell) => transform.position + Layout.CellToLocal(cell, cellSize);
-    public Vector3Int WorldToCell(Vector3 world) => Layout.LocalToCell(world - transform.position, cellSize);
+    private ICellLayout _CellLayout => _layouts[Layout];
+    public CellLayout Layout => cellLayout;
+    public Vector3[] GetLines() => _CellLayout.GetLines(cellSize);
+    public Vector3[] GetCorners() => _CellLayout.GetCorners(cellSize);
+    public Vector3 GetCorner(int corner) => _CellLayout.GetCorner(corner, cellSize);
+    public Vector3 CellToWorld(Vector3Int cell) => transform.position + _CellLayout.CellToLocal(cell, cellSize);
+    public Vector3Int WorldToCell(Vector3 world) => _CellLayout.LocalToCell(world - transform.position, cellSize);
   }
 }
